@@ -1,9 +1,9 @@
 # C++20 Fundamentals LiveLessons Code Examples
 Source code examples for our **C++20 Fundamentals LiveLessons** Videos.
 
-At the moment, these videos are available only to O'Reilly Online Learning subscribers. For all our books, LiveLessons videos and Full Throttle live webinars on O'Reilly Online Learning, visit: https://deitel.com/LearnWithPaul
+At the moment, these videos are available only to O'Reilly Online Learning subscribers. For all our books, LiveLessons videos and Full Throttle live webinars on O'Reilly Online Learning, visit: https://deitel.com/LearnWithDeitel
 
-These source-code files are (C) Copyright 2020 by Deitel & Associates, Inc. and Pearson Education, Inc. All Rights Reserved.
+These source-code files are (C) Copyright 2021 by Deitel & Associates, Inc. and Pearson Education, Inc. All Rights Reserved.
 
 You may use these files for your personal purposes, but please do not repost them without our express written consent.
 
