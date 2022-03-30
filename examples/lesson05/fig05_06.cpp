@@ -12,7 +12,7 @@ int main() {
    // use the default random-number generation engine to                
    // produce uniformly distributed pseudorandom int values from 1 to 6 
    default_random_engine engine{gsl::narrow_cast   <unsigned int>(time(0))};
-   const uniform_int_distribution<int> randomInt{1, 6};
+   uniform_int_distribution<int> randomInt{1, 6};
 
    // loop 10 times
    for (int counter{1}; counter <= 10; ++counter) {
