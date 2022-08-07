@@ -12,7 +12,7 @@ int main() {
 
    // calculate the greatest common divisor of two integers
    std::cout << "std::gcd(75, 20): " << std::gcd(75, 20)
-      << "\nstd::gcd(17, 13): " << std::gcd(75, 13);
+      << "\nstd::gcd(75, 13): " << std::gcd(75, 13);
 
    // calculate the least common multiple of two integers
    std::cout << "\n\nstd::lcm(3, 5): " << std::lcm(3, 5)

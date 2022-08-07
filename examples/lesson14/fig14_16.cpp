@@ -48,7 +48,7 @@ int main() {
 
    // calculate sum of squares array
    result = std::accumulate(integers.cbegin(), integers.cend(),
-      0, [](auto total, auto value) {return total + value * value; });
+      0, [](auto total, auto value) {return total + value * value;});
 
    std::cout << "\nvia a lambda: " << result << "\n";
 }

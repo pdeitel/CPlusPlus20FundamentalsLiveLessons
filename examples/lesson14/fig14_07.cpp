@@ -29,7 +29,7 @@ int main() {
    }
 
    // create variable to store lambda for reuse later
-   auto isGreaterThan10{[](auto x) {return x > 10; }};
+   auto isGreaterThan10{[](auto x) {return x > 10;}};
 
    // locate first occurrence of value greater than 10 in values
    auto loc3{std::ranges::find_if(values, isGreaterThan10)};
