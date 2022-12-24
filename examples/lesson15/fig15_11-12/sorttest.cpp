@@ -5,7 +5,7 @@
 #include "MyArray.h"
 
 int main() {
-   MyArray ints{10, 2, 33, 4, 7, 1, 80};
+   MyArray integers{10, 2, 33, 4, 7, 1, 80};
    std::ranges::sort(integers);
 }
 
