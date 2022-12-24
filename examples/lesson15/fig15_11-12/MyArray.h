@@ -10,7 +10,6 @@
 #include <stdexcept>
 #include <utility>
 
-
 // class template ConstIterator for a MyArray const iterator 
 template <typename T>
 class ConstIterator {

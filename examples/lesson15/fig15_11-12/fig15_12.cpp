@@ -1,6 +1,7 @@
 // fig15_12.cpp
 // Using MyArray with range-based for and with 
 // C++ standard library algorithms.
+#include <algorithm>
 #include <iostream>
 #include <iterator>
 #include "MyArray.h"
