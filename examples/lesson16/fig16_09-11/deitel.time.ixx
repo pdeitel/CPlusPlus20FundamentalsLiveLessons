@@ -1,4 +1,4 @@
-// Fig. 16.09: deitel.time.ixx
+// Fig. 16.9: deitel.time.ixx
 // Primary module interface for a simple Time class.
 export module deitel.time; // declare the primary module interface
 

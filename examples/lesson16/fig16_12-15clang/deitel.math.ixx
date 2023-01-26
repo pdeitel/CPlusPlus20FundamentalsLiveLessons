@@ -1,11 +1,12 @@
-// Fig. 16.26: moduleB.ixx
-// Primary module interface unit that imports, but does not export, 
-// moduleA and exports function square.
-export module moduleB; // declares the primary module interface unit
+// Fig. 16.14: deitel.math.ixx
+// Primary module interface unit deitel.math exports declarations from
+// the module interface partitions :powers and :roots.
+export module deitel.math; // declares the primary module interface unit
 
-import moduleA; // import but do not export moduleA
-
-export int square(int x) {return x * x;}
+// import and re-export the declarations in the module
+// interface partitions :powers and :roots
+export import :powers;
+export import :roots;
 
 
 /*************************************************************************

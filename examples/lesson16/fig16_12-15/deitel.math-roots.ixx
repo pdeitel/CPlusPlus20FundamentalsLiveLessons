@@ -5,8 +5,8 @@ export module deitel.math:roots;
 import <cmath>;
 
 export namespace deitel::math {
-   double squareRoot(double x) { return std::sqrt(x); }
-   double cubeRoot(double x) { return std::cbrt(x); }
+   double squareRoot(double x) {return std::sqrt(x);}
+   double cubeRoot(double x) {return std::cbrt(x);}
 }
 
 

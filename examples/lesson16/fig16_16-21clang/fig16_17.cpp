@@ -1,20 +1,14 @@
-// fig16_07.cpp
-// Using the privatefragmentdemo module's Integer class.
+// fig16_17.cpp
+// Using the deitel.math.powers module's functions.
 import <iostream>;
-import privatefragmentdemo;
+import deitel.math.powers; // import the deitel.math.powers module
+
+using namespace deitel::math;
 
 int main() {
-   Integer i{100}; 
-
-   // get the int value from i's underlying Implementation object
-   std::cout << "Integer i contains: " << i.getValue() << "\n";
-
-   // getImplementationCopy returns a unique_ptr<Implementation>;
-   // compiles because we do not explicitly mention class Implementation
-   auto impl{i.getImplementationCopy()};
+   std::cout << "square(6): " << square(6)
+      << "\ncube(5): " << cube(5) << '\n';
 }
-
-
 
 
  /*************************************************************************

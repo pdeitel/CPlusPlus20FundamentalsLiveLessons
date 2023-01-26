@@ -1,28 +1,20 @@
-// fig16_11.cpp 
-// Importing the deitel.time module and using its Time class.
+// fig16_19.cpp
+// Using the deitel.math.roots module's functions.
 import <iostream>;
-import <stdexcept>;
-import <string>;
+import deitel.math.roots; // import the deitel.math.roots module
 
-import deitel.time;
-using namespace deitel::time;
+using namespace deitel::math; 
 
 int main() {
-   const Time t{12, 25, 42}; // hour, minute and second specified      
-
-   std::cout << "Time t:\n" << t.toString() << "\n\n";
-
-   // attempt to initialize t2 with invalid values
-   try {
-      const Time t2{27, 74, 99}; // all bad values specified
-   }
-   catch (const std::invalid_argument& e) {
-      std::cout << "t2 not created: " << e.what() << '\n';
-   }
+   std::cout << "squareRoot(9): " << squareRoot(9)
+      << "\ncubeRoot(1000): " << cubeRoot(1000) << '\n';
 }
 
 
-/**************************************************************************
+
+
+
+ /*************************************************************************
  * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *

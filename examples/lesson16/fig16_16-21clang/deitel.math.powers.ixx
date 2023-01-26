@@ -1,12 +1,11 @@
-// Fig. 16.26: moduleB.ixx
-// Primary module interface unit that imports, but does not export, 
-// moduleA and exports function square.
-export module moduleB; // declares the primary module interface unit
+// Fig. 16.16: deitel.math.powers.ixx
+// Primary module interface unit deitel.math.powers.
+export module deitel.math.powers; 
 
-import moduleA; // import but do not export moduleA
-
-export int square(int x) {return x * x;}
-
+export namespace deitel::math {
+   double square(double x) { return x * x; }
+   double cube(double x) { return x * x * x; }
+}
 
 /*************************************************************************
 * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *

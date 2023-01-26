@@ -1,11 +1,14 @@
-// Fig. 16.26: moduleB.ixx
-// Primary module interface unit that imports, but does not export, 
-// moduleA and exports function square.
-export module moduleB; // declares the primary module interface unit
+// Fig. 16.18: deitel.math.roots.ixx
+// Primary module interface unit deitel.math.roots. 
+module; 
+#include <cmath>
 
-import moduleA; // import but do not export moduleA
+export module deitel.math.roots;
 
-export int square(int x) {return x * x;}
+export namespace deitel::math {
+   double squareRoot(double x) { return std::sqrt(x); }
+   double cubeRoot(double x) { return std::cbrt(x); }
+}
 
 
 /*************************************************************************
