@@ -1,0 +1,259 @@
+************
+* fig16_01 *
+************
+g++:
+------------
+g++ -fmodules-ts -x c++-system-header iostream 
+
+g++ -fmodules-ts fig16_01.cpp -o fig16_01
+
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=iostream.pcm fig16_01.cpp -o fig16_01
+
+
+
+***************
+* fig16_02-03 *
+***************
+g++:
+------------
+g++ -fmodules-ts -x c++-system-header string  
+
+g++ -fmodules-ts -x c++-system-header iostream 
+
+g++ -fmodules-ts -c -x c++ welcome.ixx 
+
+g++ -fmodules-ts fig16_03.cpp welcome.o -o fig16_03
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+clang++-16 -std=c++20 -xc++-system-header --precompile string -o string.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=string.pcm -x c++-module welcome.ixx --precompile -o welcome.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=iostream.pcm fig16_03.cpp -fprebuilt-module-path=. string.pcm welcome.pcm -o fig16_03
+
+
+***************
+* fig16_04-05 *
+***************
+g++:
+------------
+g++ -fmodules-ts -x c++-system-header iostream 
+
+g++ -fmodules-ts -c -x c++ deitel.math.ixx 
+
+g++ -fmodules-ts fig16_05.cpp deitel.math.o 
+
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -x c++-module deitel.math.ixx --precompile -o deitel.math.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=deitel.math.pcm -fmodule-file=iostream.pcm fig16_05.cpp -o fig16_05 
+
+
+***************
+* fig16_06-08 *
+***************
+g++:
+------------
+g++ -fmodules-ts -x c++-system-header algorithm 
+g++ -fmodules-ts -x c++-system-header iostream 
+g++ -fmodules-ts -x c++-system-header iterator 
+g++ -fmodules-ts -x c++-system-header numeric 
+g++ -fmodules-ts -x c++-system-header vector 
+
+g++ -fmodules-ts -c -x c++ deitel.math.ixx 
+g++ -fmodules-ts -c deitel.math-impl.cpp 
+g++ -fmodules-ts fig16_08.cpp deitel.math.o deitel.math-impl.o -o fig16_08
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+clang++-16 -std=c++20 -xc++-system-header --precompile algorithm -o algorithm.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile iterator -o iterator.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile numeric -o numeric.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile vector -o vector.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=vector.pcm -x c++-module deitel.math.ixx --precompile -o deitel.math.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=deitel.math.pcm -fmodule-file=vector.pcm -fmodule-file=numeric.pcm -c deitel.math-impl.cpp -o deitel.math-impl.o
+
+clang++-16 -std=c++20 -fmodule-file=algorithm.pcm -fmodule-file=iostream.pcm -fmodule-file=iterator.pcm -fmodule-file=vector.pcm fig16_08.cpp deitel.math-impl.o -fprebuilt-module-path=. deitel.math.pcm -o fig16_08
+
+
+***************
+* fig16_09-11 *
+***************
+g++:
+------------
+Not working at the time of this writing. Investigating the issue.
+
+g++ -fmodules-ts -x c++-system-header iostream 
+
+g++ -fmodules-ts -x c++-system-header string 
+
+g++ -fmodules-ts -x c++-system-header stdexcept 
+
+g++ -fmodules-ts -c -x c++ deitel.time.ixx 
+
+g++ -fmodules-ts -c deitel.time-impl.cpp
+
+g++ -fmodules-ts fig16_11.cpp deitel.time.o deitel.time-impl.o -o fig16_11
+
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile string -o string.pcm 
+
+clang++-16 -std=c++20 -xc++-system-header --precompile stdexcept -o stdexcept.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=string.pcm -x c++-module deitel.time.ixx --precompile -o deitel.time.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=deitel.time.pcm -fmodule-file=string.pcm -fmodule-file=stdexcept.pcm -c deitel.time-impl.cpp -o deitel.time-impl.o
+
+clang++-16 -std=c++20 fig16_11.cpp deitel.time-impl.o -fmodule-file=iostream.pcm -fmodule-file=string.pcm -fmodule-file=stdexcept.pcm -fprebuilt-module-path=. deitel.time.pcm -o fig16_11
+
+
+***************
+* fig16_12-15 *
+***************
+g++:
+cd ..
+g++ -fmodules-ts -x c++-system-header cmath 
+
+g++ -fmodules-ts -x c++-system-header iostream 
+
+g++ -fmodules-ts -c -x c++ deitel.math-powers.ixx 
+
+g++ -fmodules-ts -c -x c++ deitel.math-roots.ixx 
+
+g++ -fmodules-ts -c -x c++ deitel.math.ixx 
+
+g++ -fmodules-ts fig16_15.cpp deitel.math-powers.o deitel.math-roots.o deitel.math.o -o fig16_15
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+IMPORTANT: Use the version of this example in the folder fig16_12-15clang. At the time of this writing, clang++ would not compile the <cmath> header into a header unit. So we replaced the import statement with
+
+	#include <cmath>
+	
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -x c++-module deitel.math-powers.ixx --precompile -o deitel.math-powers.pcm 
+
+clang++-16 -std=c++20 -x c++-module deitel.math-roots.ixx --precompile -o deitel.math-roots.pcm 
+
+clang++-16 -std=c++20 -x c++-module deitel.math.ixx -fprebuilt-module-path=. --precompile -o deitel.math.pcm
+
+clang++-16 -std=c++20 -fmodule-file=iostream.pcm fig16_15.cpp -fprebuilt-module-path=. deitel.math	.pcm deitel.math-powers.pcm deitel.math-roots.pcm -o fig16_15
+
+
+***************
+* fig16_16-21 *
+***************
+g++:
+------------
+g++ -fmodules-ts -x c++-system-header iostream 
+
+g++ -fmodules-ts -c -x c++ deitel.math.powers.ixx 
+
+g++ -fmodules-ts fig16_17.cpp deitel.math.powers.o -o fig16_17
+
+
+g++ -fmodules-ts -x c++-system-header cmath
+ 
+g++ -fmodules-ts -c -x c++ deitel.math.roots.ixx 
+
+g++ -fmodules-ts fig16_19.cpp deitel.math.roots.o -o fig16_19
+
+
+g++ -fmodules-ts -c -x c++ deitel.math.ixx 
+
+g++ -fmodules-ts fig16_21.cpp deitel.math.powers.o deitel.math.roots.o deitel.math.o -o fig16_21
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+IMPORTANT: Use the version of this example in the folder fig16_16-21clang. At the time of this writing, clang++ would not compile the <cmath> header into a header unit. So we replaced the import statement with
+
+	#include <cmath>
+
+clang++-16 -std=c++20 -xc++-system-header --precompile iostream -o iostream.pcm 
+
+clang++-16 -std=c++20 -x c++-module deitel.math.powers.ixx --precompile -o deitel.math.powers.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=iostream.pcm fig16_17.cpp -fprebuilt-module-path=. deitel.math.powers.pcm -o fig16_17
+
+
+clang++-16 -std=c++20 -x c++-module deitel.math.roots.ixx --precompile -o deitel.math.roots.pcm 
+
+clang++-16 -std=c++20 -fmodule-file=iostream.pcm fig16_19.cpp -fprebuilt-module-path=. deitel.math.roots.pcm -o fig16_19
+
+
+clang++-16 -std=c++20 -x c++-module deitel.math.ixx -fprebuilt-module-path=. --precompile -o deitel.math.pcm
+
+clang++-16 -std=c++20 -fmodule-file=iostream.pcm fig16_21.cpp -fprebuilt-module-path=. deitel.math.pcm deitel.math.powers.pcm deitel.math.roots.pcm -o fig16_21
+	
+	
+************
+* fig16_22 *
+************
+g++:
+------------
+No instructions--this example is currently only for Visual C++.
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+No instructions--this example is currently only for Visual C++.
+
+
+
+***************
+* fig16_23-24 *
+***************
+No instructions--Visual C++ only.
+
+
+
+***************
+* fig16_25-27 *
+***************
+No instructions--see the error messages shown in the video
+
+
+
+***************
+* fig16_28-29 *
+***************
+g++:
+------------
+See the instructions for fig16_09-11.
+
+
+------------------------------------------------------------------------------
+clang++ (-16 may need to be removed or changed based on your clang++ version):
+------------
+See the instructions for fig16_09-11.
