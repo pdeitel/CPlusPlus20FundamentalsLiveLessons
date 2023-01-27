@@ -1,0 +1,7 @@
+FROM ubuntu:20.04
+RUN apt-get update -y
+RUN apt-get install -y build-essential wget
+RUN wget --quiet --content-disposition http://kayari.org/gcc-latest/gcc-latest.deb
+RUN dpkg -i gcc-latest*.deb
+RUN /opt/gcc-latest/bin/g++ --version
+
