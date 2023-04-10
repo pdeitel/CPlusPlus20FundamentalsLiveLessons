@@ -1,7 +1,7 @@
 // Fig. 17.8: SharedBufferTest.cpp
 // Concurrent threads correctly manipulating a synchronized buffer.
 #include <chrono>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <mutex>
 #include <random>
@@ -55,12 +55,12 @@ int main() {
             sum += buffer.get(); // get buffer value and add to sum
          }
 
-         std::cout << fmt::format("\n{} {}\n{}\n",
+         std::cout << std::format("\n{} {}\n{}\n",
             "Consumer read values totaling", sum, "Terminating Consumer");
       }
    };
 
-   std::cout << fmt::format("{:<40}{}\t\t{}\n{:<40}{}\t\t{}\n\n",
+   std::cout << std::format("{:<40}{}\t\t{}\n{:<40}{}\t\t{}\n\n",
       "Operation", "Buffer", "Occupied",
       "---------", "------", "--------");
 

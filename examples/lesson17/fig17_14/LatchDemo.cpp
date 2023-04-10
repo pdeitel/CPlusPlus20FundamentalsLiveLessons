@@ -1,7 +1,7 @@
 // Fig. 17.14: LatchDemo.cpp
 // Coordinate threads with a std::latch object.
 #include <chrono>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <latch>
 #include <random>
@@ -21,14 +21,14 @@ int main() {
    // lambda representing the task to execute
    auto task{
       [&](std::string_view name, std::chrono::milliseconds workTime) {
-         std::cout << fmt::format("Proceeding with {} work for {} ms.\n",
+         std::cout << std::format("Proceeding with {} work for {} ms.\n",
             name, workTime.count());
 
          // simulate work by sleeping 
          std::this_thread::sleep_for(workTime);
 
          // show that task arrived at mainLatch
-         std::cout << fmt::format("{} done; signals mainLatch.\n", name);
+         std::cout << std::format("{} done; signals mainLatch.\n", name);
          mainLatch.count_down();
       }
    };
@@ -41,7 +41,7 @@ int main() {
       // create jthread that calls task lambda, 
       // passing a task name and work time
       threads.push_back(std::jthread{task,
-         fmt::format("Task {}", i),
+         std::format("Task {}", i),
          std::chrono::milliseconds{ints(engine)}});
    }
 

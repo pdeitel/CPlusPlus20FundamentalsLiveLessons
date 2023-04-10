@@ -3,7 +3,7 @@
 #pragma once
 #include <array> 
 #include <condition_variable> 
-#include <fmt/format.h> 
+#include <format> 
 #include <mutex>
 #include <iostream>
 #include <string>
@@ -34,7 +34,7 @@ public:
          m_buffer[m_writeIndex] = value; // write to m_buffer
          ++m_occupiedCells; // one more m_buffer cell is occupied
          m_writeIndex = (m_writeIndex + 1) % m_buffer.size();
-         displayState(fmt::format("Producer writes {}", value));
+         displayState(std::format("Producer writes {}", value));
       } // dataLock's destructor releases the lock on m_mutex here
 
       m_cv.notify_one(); // notify threads waiting to read from m_buffer
@@ -62,7 +62,7 @@ public:
          readValue = m_buffer[m_readIndex]; // read value from m_buffer
          m_readIndex = (m_readIndex + 1) % m_buffer.size();
          --m_occupiedCells; // one fewer m_buffer cells is occupied
-         displayState(fmt::format("Consumer reads {}", readValue));
+         displayState(std::format("Consumer reads {}", readValue));
       } // dataLock's destructor releases the lock on m_mutex here
 
       m_cv.notify_one(); // notify threads waiting to write to m_buffer
@@ -74,25 +74,25 @@ public:
       std::string s;
 
       // add operation argument and number of occupied m_buffer cells
-      s += fmt::format("{} (buffer cells occupied: {})\n{:<15}",
+      s += std::format("{} (buffer cells occupied: {})\n{:<15}",
          operation, m_occupiedCells, "buffer cells:");
 
       // add values in m_buffer 
       for (int value : m_buffer) {
-         s += fmt::format(" {:2d}  ", value);
+         s += std::format(" {:2d}  ", value);
       }
 
-      s += fmt::format("\n{:<15}", ""); // padding
+      s += std::format("\n{:<15}", ""); // padding
 
       // add underlines
       for (int i{0}; i < m_buffer.size(); ++i) {
          s += "---- "s;
       }
 
-      s += fmt::format("\n{:<15}", ""); // padding
+      s += std::format("\n{:<15}", ""); // padding
 
       for (int i{0}; i < m_buffer.size(); ++i) {
-         s += fmt::format(" {}{}  ",
+         s += std::format(" {}{}  ",
             (i == m_writeIndex ? 'W' : ' '),
             (i == m_readIndex ? 'R' : ' '));
       }

@@ -2,7 +2,7 @@
 // Using a std::jthread's built-in stop_source 
 // to request that the std::jthread stop executing.
 #include <chrono>
-#include <format>
+#include <fmt/format.h>
 #include <iostream>
 #include <mutex>
 #include <random>
@@ -30,14 +30,14 @@ int main() {
 
          // register a function to call when a stop is requested 
          std::stop_callback callback(token, [&]() {
-            std::cout << std::format(
+            std::cout << fmt::format(
                "{} told to stop by thread with id {}\n", name, id());
          });
 
          while (!token.stop_requested()) { // run until stop requested
             auto sleepTime{std::chrono::milliseconds{ints(engine)}};
 
-            std::cout << std::format(
+            std::cout << fmt::format(
                "{} (id: {}) going to sleep for {} ms\n",
                name, id(), sleepTime.count());
 
@@ -45,14 +45,14 @@ int main() {
             std::this_thread::sleep_for(sleepTime);
 
             // show that task woke up 
-            std::cout << std::format("{} working.\n", name);
+            std::cout << fmt::format("{} working.\n", name);
          }
 
-         std::cout << std::format("{} terminating.\n", name);
+         std::cout << fmt::format("{} terminating.\n", name);
       }
    };
 
-   std::cout << std::format("MAIN (id: {}) STARTING TASKS\n", id());
+   std::cout << fmt::format("MAIN (id: {}) STARTING TASKS\n", id());
 
    // create two jthreads that each call printTask with a string argument
    std::jthread task1{printTask, "Task 1"};
@@ -62,7 +62,7 @@ int main() {
    std::cout << "\nMAIN GOING TO SLEEP FOR 2 SECONDS\n\n";
    std::this_thread::sleep_for(std::chrono::seconds{2});
 
-   std::cout << std::format("\nMAIN (id: {}) ENDS\n\n", id()); 
+   std::cout << fmt::format("\nMAIN (id: {}) ENDS\n\n", id()); 
 }
 
 

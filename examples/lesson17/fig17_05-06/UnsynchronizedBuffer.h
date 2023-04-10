@@ -2,7 +2,7 @@
 // UnsynchronizedBuffer incorrectly maintains a shared integer that is 
 // accessed by a producer thread and a consumer thread.
 #pragma once
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <string>
 
@@ -10,13 +10,13 @@ class UnsynchronizedBuffer {
 public:
    // place value into buffer
    void put(int value) {
-      std::cout << fmt::format("Producer writes\t{:2d}", value);
+      std::cout << std::format("Producer writes\t{:2d}", value);
       m_buffer = value;
    }
 
    // return value from buffer
    int get() const {
-      std::cout << fmt::format("Consumer reads\t{:2d}", m_buffer);
+      std::cout << std::format("Consumer reads\t{:2d}", m_buffer);
       return m_buffer;
    }
 private:

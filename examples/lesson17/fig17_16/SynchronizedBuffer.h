@@ -2,7 +2,7 @@
 // SynchronizedBuffer using two binary_semaphores to  
 // maintain synchronized access to a shared mutable int.
 #pragma once
-#include <fmt/format.h> 
+#include <format> 
 #include <iostream>
 #include <semaphore>
 #include <string>
@@ -19,7 +19,7 @@ public:
       m_buffer = value; // write to m_buffer
       m_occupied = true;
 
-      std::cout << fmt::format("{:<40}{}\t\t{}\n",
+      std::cout << std::format("{:<40}{}\t\t{}\n",
          "Producer writes "s + std::to_string(value),
          m_buffer, m_occupied);
 
@@ -36,7 +36,7 @@ public:
       value = m_buffer; // read from m_buffer
       m_occupied = false;
 
-      std::cout << fmt::format("{:<40}{}\t\t{}\n",
+      std::cout << std::format("{:<40}{}\t\t{}\n",
          "Consumer reads "s + std::to_string(m_buffer),
          m_buffer, m_occupied);
 

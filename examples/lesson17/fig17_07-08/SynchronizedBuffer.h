@@ -3,7 +3,7 @@
 // integer that is accessed by a producer thread and a consumer thread.
 #pragma once
 #include <condition_variable> 
-#include <fmt/format.h> 
+#include <format> 
 #include <mutex>
 #include <iostream>
 #include <string>
@@ -20,7 +20,7 @@ public:
          std::unique_lock dataLock{m_mutex};
 
          if (m_occupied) {
-            std::cout << fmt::format(
+            std::cout << std::format(
                "Producer tries to write.\n{:<40}{}\t\t{}\n\n",
                "Buffer full. Producer waits.", m_buffer, m_occupied);
 
@@ -34,7 +34,7 @@ public:
          m_buffer = value;
          m_occupied = true;
 
-         std::cout << fmt::format("{:<40}{}\t\t{}\n\n",
+         std::cout << std::format("{:<40}{}\t\t{}\n\n",
             "Producer writes "s + std::to_string(value),
             m_buffer, m_occupied);
       } // dataLock's destructor releases the lock on m_mutex 
@@ -53,7 +53,7 @@ public:
          std::unique_lock dataLock{m_mutex};
 
          if (!m_occupied) {
-            std::cout << fmt::format(
+            std::cout << std::format(
                "Consumer tries to read.\n{:<40}{}\t\t{}\n\n",
                "Buffer empty. Consumer waits.", m_buffer, m_occupied);
 
@@ -66,7 +66,7 @@ public:
          value = m_buffer;
          m_occupied = false;
 
-         std::cout << fmt::format("{:<40}{}\t\t{}\n{}\n",
+         std::cout << std::format("{:<40}{}\t\t{}\n{}\n",
             "Consumer reads "s + std::to_string(m_buffer),
             m_buffer, m_occupied, std::string(64, '-'));
       } // dataLock's destructor releases the lock on m_mutex 

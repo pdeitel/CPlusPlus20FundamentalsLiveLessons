@@ -1,7 +1,7 @@
 // Fig. 17.12: async.cpp
 // Prime-factorization tasks performed in separate threads
 #include <cmath>
-#include <fmt/format.h>
+#include <format>
 #include <future> // std::async
 #include <iostream>
 #include <sstream>
@@ -25,7 +25,7 @@ using FactorResults = std::tuple<std::string, long long, bool, Factors>;
 
 // performs prime factorization   
 FactorResults getFactors(std::string name, long long number) {
-   std::cout << fmt::format(
+   std::cout << std::format(
       "{}: Thread {} executing getFactors for {}\n", name, id(), number);
 
    long long originalNumber{number}; // copy to place in FactorResults
@@ -81,11 +81,11 @@ void proveFactors(long long number, const Factors& factors) {
 
    // confirm proof and number are equal
    if (proof == number) {
-      std::cout << fmt::format(
+      std::cout << std::format(
          "\nProduct of factors matches original value ({})\n", proof);
    }
    else {
-      std::cout << fmt::format("\n{} != {}\n", proof, number);
+      std::cout << std::format("\n{} != {}\n", proof, number);
    }
 }
 
@@ -95,18 +95,18 @@ void displayResults(const FactorResults& results) {
    // isPrime (bool) and factors (Factors) 
    const auto& [name, number, isPrime, factors] {results};
 
-   std::cout << fmt::format("\n{} results:\n", name);
+   std::cout << std::format("\n{} results:\n", name);
 
    // display whether value is prime
    if (isPrime) {
-      std::cout << fmt::format("{} is prime\n", number);
+      std::cout << std::format("{} is prime\n", number);
    }
    else { // display prime factors
-      std::cout << fmt::format("{}'s prime factors:\n\n", number);
-      std::cout << fmt::format("{:<12}{:<8}\n", "Factor", "Count");
+      std::cout << std::format("{}'s prime factors:\n\n", number);
+      std::cout << std::format("{:<12}{:<8}\n", "Factor", "Count");
 
       for (const auto& [factor, count] : factors) {
-         std::cout << fmt::format("{:<12}{:<8}\n", factor, count);
+         std::cout << std::format("{:<12}{:<8}\n", factor, count);
       }
    }
 

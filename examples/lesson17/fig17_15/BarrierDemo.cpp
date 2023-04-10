@@ -2,7 +2,7 @@
 // Coordinating threads with a std::barrier object.
 #include <barrier>
 #include <chrono>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <random>
 #include <string_view>
@@ -56,12 +56,12 @@ int main() {
          while (!stopToken.stop_requested()) {
             auto workTime{std::chrono::milliseconds{ints(engine)}};
 
-            std::cout << fmt::format("{} painting for {} ms\n",
+            std::cout << std::format("{} painting for {} ms\n",
                name, workTime.count());
             std::this_thread::sleep_for(workTime); // simulate work
 
             // show that task woke up and arrived at continuationBarrier
-            std::cout << fmt::format(
+            std::cout << std::format(
                "{} done painting. Waiting for next car.\n", name);
 
             // decrement paintingDone barrier's counter and
@@ -69,7 +69,7 @@ int main() {
             paintingDone.arrive_and_wait(); 
          }
 
-         std::cout << fmt::format("{} shut down.\n", name);
+         std::cout << std::format("{} shut down.\n", name);
       }
    };
 

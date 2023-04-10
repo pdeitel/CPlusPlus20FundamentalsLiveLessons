@@ -2,7 +2,7 @@
 // Incrementing integers from concurrent threads 
 // with and without atomics.
 #include <atomic>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <thread>
 
@@ -32,9 +32,9 @@ int main() {
       std::jthread t2{incrementer};
    }
 
-   std::cout << fmt::format("Final count1: {}\n", count1);
-   std::cout << fmt::format("Final atomicCount: {}\n", atomicCount);
-   std::cout << fmt::format("Final count2: {}\n", count2);
+   std::cout << std::format("Final count1: {}\n", count1);
+   std::cout << std::format("Final atomicCount: {}\n", atomicCount);
+   std::cout << std::format("Final count2: {}\n", count2);
 }
 
  

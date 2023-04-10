@@ -1,7 +1,7 @@
 // Fig. 17.6: SharedBufferTest.cpp
 // Application with concurrent jthreads sharing an unsynchronized buffer.
 #include <chrono>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <random>
 #include <thread>
@@ -28,7 +28,7 @@ int main() {
 
             buffer.put(count); // set value in buffer
             sum += count; // add count to sum of values produced
-            std::cout << fmt::format("\t{:2d}\n", sum);
+            std::cout << std::format("\t{:2d}\n", sum);
          }
    
          std::cout << "Producer done producing\nTerminating Producer\n";      
@@ -51,10 +51,10 @@ int main() {
             std::this_thread::sleep_for(sleepTime);
 
             sum += buffer.get(); // get buffer value and add to sum
-            std::cout << fmt::format("\t\t\t{:2d}\n", sum);
+            std::cout << std::format("\t\t\t{:2d}\n", sum);
         }
 
-         std::cout << fmt::format("\n{} {}\n{}\n",
+         std::cout << std::format("\n{} {}\n{}\n",
             "Consumer read values totaling", sum, "Terminating Consumer");
       }
    };
