@@ -1,7 +1,7 @@
 // Fig. 17.3: printtask.h
 // Function printTask defines a task to perform in a separate thread.
 #include <chrono>
-#include <fmt/format.h> 
+#include <format> 
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -23,7 +23,7 @@ void printTask(const std::string& name,
    using std::chrono::duration_cast;
    using std::chrono::milliseconds;
 
-   std::cout << fmt::format("{} (ID {}) going to sleep for {} ms\n",
+   std::cout << std::format("{} (ID {}) going to sleep for {} ms\n",
       name, id(), sleepTime.count());
 
    auto startTime{steady_clock::now()}; // get current time
@@ -34,7 +34,7 @@ void printTask(const std::string& name,
    auto endTime{steady_clock::now()}; // get current time
    auto time{duration_cast<milliseconds>(endTime - startTime)};
    auto difference{duration_cast<milliseconds>(time - sleepTime)};
-   std::cout << fmt::format("{} (ID {}) awakens after {} ms ({} + {})\n",
+   std::cout << std::format("{} (ID {}) awakens after {} ms ({} + {})\n",
       name, id(), time.count(), sleepTime.count(), difference.count());
 }
 

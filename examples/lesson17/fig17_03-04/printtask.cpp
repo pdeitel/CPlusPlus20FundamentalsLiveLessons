@@ -1,7 +1,7 @@
 // Fig. 17.4: printtask.cpp
 // Concurrently executing tasks with std::jthreads.
 #include <chrono>
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <random>
 #include <string>
@@ -22,7 +22,7 @@ int main() {
    // start two jthreads
    for (int i{1}; i < 3; ++i) {
       std::chrono::milliseconds sleepTime{ints(engine)};
-      std::string name{fmt::format("Tasks {}", i)};
+      std::string name{std::format("Task {}", i)};
 
       // create a jthread that calls printTask, passing name and sleepTime
       // as arguments and store the jthread, so it is not destructed until

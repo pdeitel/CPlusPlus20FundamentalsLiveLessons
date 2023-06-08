@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
    // initialization phase
-   int total{0}; // initialize sum of grades
+   double total{0.0}; // initialize sum of grades
    int gradeCounter{0}; // initialize # of grades entered so far
    
    // processing phase
@@ -27,23 +27,23 @@ int main() {
 
    // termination phase
    // if user entered at least one grade
-   if (gradeCounter != 0) {
-      // use number with decimal point to calculate average of grades
-      double average{static_cast<double>(total) / gradeCounter};
+   if (gradeCounter != 0) { // avoid division by zero
+      // calculate average of grades
+      double average{total / gradeCounter};
 
       // display total and average (with two digits of precision)
       cout << "\nTotal of the " << gradeCounter 
          << " grades entered is " << total;
       cout << setprecision(2) << fixed; 
-      cout << "\nClass average is " << average << endl; 
+      cout << "\nClass average is " << average << "\n"; 
    } 
    else { // no grades were entered, so output appropriate message
-      cout << "No grades were entered" << endl; 
+      cout << "No grades were entered\n"; 
    }
 } 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

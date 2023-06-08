@@ -18,7 +18,7 @@ int main() {
    std::vector<int> v1(100'000'000); // 100,000,000 element vector
 
    std::cout << "Filling vector v1 with random ints\n";
-   std::generate(v1.begin(), v1.end(), [&](){return ints(engine);});
+   std::ranges::generate(v1, [&]() {return ints(engine);});
 
    // copy v1 to create identical data sets for each sort demonstration
    std::cout << "Copying v1 to vector v2 to create identical data sets\n";

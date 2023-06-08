@@ -1,4 +1,4 @@
-/// Fig. 17.7: SynchronizedBuffer.h 
+// Fig. 17.7: SynchronizedBuffer.h 
 // SynchronizedBuffer maintains synchronized access to a shared mutable
 // integer that is accessed by a producer thread and a consumer thread.
 #pragma once
@@ -27,7 +27,7 @@ public:
             // wait on condition variable m_cv; the lambda in the second
             // argument ensures that if the thread gets the processor
             // before m_occupied is false, the thread continues waiting
-            m_cv.wait(dataLock, [&]() {return !m_occupied; });
+            m_cv.wait(dataLock, [&]() {return !m_occupied;});
          }
 
          // write to m_buffer
@@ -60,7 +60,7 @@ public:
             // wait on condition variable m_cv; the lambda in the second 
             // argument ensures that if the thread gets the processor
             // before m_occupied is true, the thread continues waiting
-            m_cv.wait(dataLock, [&]() {return m_occupied; });
+            m_cv.wait(dataLock, [&]() {return m_occupied;});
          }
 
          value = m_buffer;

@@ -13,7 +13,7 @@ using namespace std::string_literals;
 
 class CircularBuffer {
 public:
-   // place value into m_buffer
+   // place value into m_bu ffer
    void put(int value) {
       // critical section that requires a lock to modify shared data
       {
@@ -28,7 +28,7 @@ public:
             // ensures that if the thread gets the processor before
             // the m_buffer has open cells, the thread continues waiting
             m_cv.wait(dataLock,
-               [&] {return m_occupiedCells < m_buffer.size(); });
+               [&] {return m_occupiedCells < m_buffer.size();});
          }
 
          m_buffer[m_writeIndex] = value; // write to m_buffer
@@ -56,7 +56,7 @@ public:
             // wait on the condition variable; the lambda argument 
             // ensures that if the thread gets the processor before
             // there is data in the m_buffer, the thread continues waiting
-            m_cv.wait(dataLock, [&]() {return m_occupiedCells > 0; });
+            m_cv.wait(dataLock, [&]() {return m_occupiedCells > 0;});
          }
 
          readValue = m_buffer[m_readIndex]; // read value from m_buffer

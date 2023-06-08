@@ -4,7 +4,7 @@
 #include <chrono> // for timing operations
 #include <cmath>
 #include <execution> // for execution policies
-#include <fmt/format.h>
+#include <format>
 #include <iostream>
 #include <random>
 #include <vector>
@@ -46,24 +46,24 @@ int main() {
    std::cout << "\nCalculating square roots:\n";
 
    // time the transforms on 100,000,000 elements
-   std::cout << fmt::format("{} elements with par\n", v1.size());
+   std::cout << std::format("{} elements with par\n", v1.size());
    double parTime1{timeTransform(std::execution::par, v1)};
-   std::cout << fmt::format("{} elements with unseq\n", v1.size());
+   std::cout << std::format("{} elements with unseq\n", v1.size());
    double unseqTime1{timeTransform(std::execution::unseq, v1)};
 
    // time the transforms on 1,000,000,000 elements
-   std::cout << fmt::format("{} elements with par\n", v2.size());
+   std::cout << std::format("{} elements with par\n", v2.size());
    double parTime2{timeTransform(std::execution::par, v2)};
-   std::cout << fmt::format("{} elements with unseq\n", v2.size());
+   std::cout << std::format("{} elements with unseq\n", v2.size());
    double unseqTime2{timeTransform(std::execution::unseq, v2)};
 
    // display table of timing results
    std::cout << "\nExecution times (in seconds):\n\n"
-      << fmt::format("{:>13}{:>17}{:>21}\n", "# of elements", 
+      << std::format("{:>13}{:>17}{:>21}\n", "# of elements", 
             "par (parallel)", "unseq (vectorized)")
-      << fmt::format("{:>13}{:>17.3f}{:>21.3f}\n",
+      << std::format("{:>13}{:>17.3f}{:>21.3f}\n",
             v1.size(), parTime1, unseqTime1)
-      << fmt::format("{:>13}{:>17.3f}{:>21.3f}\n",
+      << std::format("{:>13}{:>17.3f}{:>21.3f}\n",
             v2.size(), parTime2, unseqTime2);
 }
 

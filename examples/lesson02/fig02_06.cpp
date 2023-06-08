@@ -1,5 +1,5 @@
 // fig02_06.cpp
-// Standard Library string class test program. 
+// Standard library string class test program. 
 #include <iostream>
 #include <string> 
 using namespace std;
@@ -29,15 +29,15 @@ int main() {
    } 
 
    // testing new C++20 string member functions 
-   cout << "\n\ns1 starts with \"ha\": " << s1.starts_with("ha") << endl;
-   cout << "s2 starts with \"ha\": " << s2.starts_with("ha") << endl;
-   cout << "s1 ends with \"ay\": " << s1.ends_with("ay") << endl;
-   cout << "s2 ends with \"ay\": " << s2.ends_with("ay") << endl;
+   cout << "\n\ns1 starts with \"ha\": " << s1.starts_with("ha") << "\n";
+   cout << "s2 starts with \"ha\": " << s2.starts_with("ha") << "\n";
+   cout << "s1 ends with \"ay\": " << s1.ends_with("ay") << "\n";
+   cout << "s2 ends with \"ay\": " << s2.ends_with("ay") << "\n";
 } 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *
