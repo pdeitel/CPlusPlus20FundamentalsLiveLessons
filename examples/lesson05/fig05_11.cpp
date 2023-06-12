@@ -1,22 +1,30 @@
 // fig05_11.cpp
-// Unary scope resolution operator.
-#include <iostream>
-using namespace std;
+// Name mangling to enable type-safe linkage.
 
-const int number{7}; // global variable named number
+// function square for int values
+int square(int x) {
+   return x * x; 
+} 
 
-int main() {
-   const double number{10.5}; // local variable named number
+// function square for double values
+double square(double y) {
+   return y * y; 
+} 
 
-   // display values of local and global variables
-   cout << "Local double value of number = " << number
-      << "\nGlobal int value of number = " << ::number << endl;
-}
+// function that receives arguments of types 
+// int, float, char and int&
+void nothing1(int a, float b, char c, int& d) { }
 
+// function that receives arguments of types 
+// char, int, float& and double&
+int nothing2(char a, int b, float& c, double& d) {
+   return 0; 
+} 
 
+int main() { }
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

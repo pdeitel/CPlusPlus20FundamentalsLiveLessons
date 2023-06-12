@@ -1,17 +1,25 @@
-// fig05_19.cpp
-// C++17 [[nodiscard]] attribute.
-
-[[nodiscard]]
-int cube(int x) {
-   return x * x * x;
-}
+// fig04_03.cpp
+// Summing integers with the for statement; introducing text formatting.
+#include <fmt/format.h> // C++20: This will be #include <format> 
+#include <iostream>
+using namespace std;
 
 int main() {
-   cube(10); // generates a compiler warning
-}
+   int total{0};
+
+   // total even integers from 2 through 20
+   for (int number{2}; number <= 20; number += 2) {
+      total += number;                             
+   }
+
+   cout << fmt::format("Sum is {}\n", total);
+} 
+
+
+
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2023 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *
@@ -23,4 +31,4 @@ int main() {
  * and publisher shall not be liable in any event for incidental or       *
  * consequential damages in connection with, or arising out of, the       *
  * furnishing, performance, or use of these programs.                     *
- **************************************************************************/
+ *************************************************************************/

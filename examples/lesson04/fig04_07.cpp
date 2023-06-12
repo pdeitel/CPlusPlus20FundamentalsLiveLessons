@@ -1,27 +1,29 @@
 // fig04_07.cpp
-// C++17 if statements with initializers.
+// if statements with initializers.
+#include <format> 
 #include <iostream>
 using namespace std;
 
 int main() {
    if (int value{7}; value == 7) {
-      cout << "value is " << value << endl;
+      cout << format("value is {}\n", value);
    }
    else {
-      cout << "value is not 7; it is " << value << endl;
+      cout << format("value is not 7; it is {}\n", value);
    }
 
    if (int value{13}; value == 9) {
-      cout << "value is " << value << endl;
+      cout << format("value is {}\n", value);
    }
    else {
-      cout << "value is not 9; it is " << value << endl;
+      cout << format("value is not 9; it is {}\n", value);
    }
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2023 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

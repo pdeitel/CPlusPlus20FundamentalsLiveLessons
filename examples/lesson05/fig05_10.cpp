@@ -1,37 +1,30 @@
 // fig05_10.cpp
-// Using default arguments.
+// Overloaded square functions.
 #include <iostream>
 using namespace std;
 
-// function prototype that specifies default arguments
-int boxVolume(int length = 1, int width = 1, int height = 1);
+// function square for int values              
+int square(int x) {                            
+   cout << "square of integer " << x << " is ";
+   return x * x;                               
+} 
+
+// function square for double values           
+double square(double y) {                     
+   cout << "square of double " << y << " is "; 
+   return y * y;                               
+} 
 
 int main() {
-   // no arguments--use default values for all dimensions
-   cout << "The default box volume is: " << boxVolume();
-
-   // specify length; default width and height
-   cout << "\n\nThe volume of a box with length 10,\n"
-      << "width 1 and height 1 is: " << boxVolume(10);
-
-   // specify length and width; default height
-   cout << "\n\nThe volume of a box with length 10,\n"
-      << "width 5 and height 1 is: " << boxVolume(10, 5);
-
-   // specify all arguments 
-   cout << "\n\nThe volume of a box with length 10,\n"
-      << "width 5 and height 2 is: " << boxVolume(10, 5, 2)
-      << endl;
-}
-
-// function boxVolume calculates the volume of a box
-int boxVolume(int length, int width, int height) {
-   return length * width * height;
-}
+   cout << square(7); // calls int version
+   cout << '\n';
+   cout << square(7.5); // calls double version
+   cout << '\n';
+} 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

@@ -1,31 +1,24 @@
 // fig05_06.cpp
-// Using a C++11 random-number generation engine and distribution
-// to roll a six-sided die more securely.
+// square function used to demonstrate the function 
+// call stack and activation records.
 #include <iostream>
-#include <iomanip>
-#include <random> // contains C++11 random number generation features 
-#include <ctime>
-#include "gsl/gsl"
 using namespace std;
 
+int square(int); // prototype for function square
+
 int main() {
-   // use the default random-number generation engine to                
-   // produce uniformly distributed pseudorandom int values from 1 to 6 
-   default_random_engine engine{gsl::narrow_cast   <unsigned int>(time(0))};
-   uniform_int_distribution<int> randomInt{1, 6};
+   int a{10}; // value to square (local variable in main)
 
-   // loop 10 times
-   for (int counter{1}; counter <= 10; ++counter) {
-      // pick random number from 1 to 6 and output it
-      cout << randomInt(engine) << " ";
-   }
-   
-   cout << endl;
-}
+   int result{square(a)}; // calculate s squared and store in result
+} 
 
+// returns the square of an integer
+int square(int x) { // x is a local variable
+   return x * x; // calculate square and return result
+} 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

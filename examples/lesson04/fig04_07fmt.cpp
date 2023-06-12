@@ -1,38 +1,29 @@
-// fig15_20.cpp
-// Encrypting and decrypting text with a Vigenère cipher. 
-#include "cipher.h"
+// fig04_07.cpp
+// if statements with initializers.
+#include <fmt/format.h> // C++20: This will be #include <format> 
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main() {
-   string plainText;
-   cout << "Enter the text to encrypt:\n";
-   getline(cin, plainText);
+   if (int value{7}; value == 7) {
+      cout << fmt::format("value is {}\n", value);
+   }
+   else {
+      cout << fmt::format("value is not 7; it is {}\n", value);
+   }
 
-   string secretKey;
-   cout << "\nEnter the secret key:\n";
-   getline(cin, secretKey);
-
-   Cipher cipher; 
-
-   // encrypt plainText using secretKey
-   string cipherText{cipher.encrypt(plainText, secretKey)};
-   cout << "\nEncrypted:\n   " << cipherText << endl;
-
-   // decrypt cipherText
-   cout << "\nDecrypted:\n   "  
-      << cipher.decrypt(cipherText, secretKey) << endl;
-   
-   // decrypt ciphertext entered by the user
-   cout << "\nEnter the ciphertext to decipher:\n";
-   getline(cin, cipherText);
-   cout << "\nDecrypted:\n   " 
-      << cipher.decrypt(cipherText, secretKey) << endl;
+   if (int value{13}; value == 9) {
+      cout << fmt::format("value is {}\n", value);
+   }
+   else {
+      cout << fmt::format("value is not 9; it is {}\n", value);
+   }
 }
 
+
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2023 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

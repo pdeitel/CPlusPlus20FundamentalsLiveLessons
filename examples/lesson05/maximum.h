@@ -1,24 +1,25 @@
-// Fig. 5.14: maximum.h
+// Fig. 5.12: maximum.h
 // Function template maximum header.
-template <typename T>  // or template<class T>      
-T maximum(T value1, T value2, T value3) {
-   T maximumValue{value1}; // assume value1 is maximum    
+template <typename T>  // or template <class T>      
+T maximum(T value1, T value2, T value3) {                 
+   T maximumValue{value1}; // assume value1 is maximum   
 
    // determine whether value2 is greater than maximumValue
-   if (value2 > maximumValue) {
-      maximumValue = value2;
-   }
+   if (value2 > maximumValue) {                           
+      maximumValue = value2;                               
+   }                                                        
 
    // determine whether value3 is greater than maximumValue
-   if (value3 > maximumValue) {
-      maximumValue = value3;
-   }
+   if (value3 > maximumValue) {                           
+      maximumValue = value3;                               
+   }                                                        
+   
+   return maximumValue;                                    
+} 
 
-   return maximumValue;
-}
 
 /**************************************************************************
- * (C) Copyright 1992-2017 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

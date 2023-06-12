@@ -1,21 +1,27 @@
 // fig05_02.cpp
-// Shifted, scaled integers produced by 1 + rand() % 6.
+// Producing random integers in the range 1 through 6.
 #include <iostream>
-#include <cstdlib> // contains function prototype for rand 
+#include <random> // contains random-number generation features 
 using namespace std;
 
 int main() {
-   for (int counter{1}; counter <= 10; ++counter) {
-      // pick random number from 1 to 6 and output it
-      cout << (1 + rand() % 6) << " ";
-   }
+   // engine that produces random numbers 
+   default_random_engine engine{};
 
-   cout << endl;
-}
+   // distribution that produces the int values 1-6 with equal likelihood
+   uniform_int_distribution randomDie{1, 6};
+
+   // display 10 random die rolls
+   for (int counter{1}; counter <= 10; ++counter) {
+      cout << randomDie(engine) << " "; 
+   } 
+
+   cout << '\n';
+} 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

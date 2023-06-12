@@ -1,6 +1,6 @@
 // fig04_06.cpp
 // Using a switch statement to count letter grades.
-#include <format>
+#include <fmt/format.h> // C++20: This will be #include <format> 
 #include <iostream>
 using namespace std;
 
@@ -59,11 +59,11 @@ int main() {
       double average{total / gradeCounter};
 
       // output summary of results
-      cout << format("Total of the {} grades entered is {}\n", 
+      cout << fmt::format("Total of the {} grades entered is {}\n", 
                  gradeCounter, total)
-           << format("Class average is {:.2f}\n\n", average)  
+           << fmt::format("Class average is {:.2f}\n\n", average)  
            << "Summary of student's grades:\n"
-           << format("A: {}\nB: {}\nC: {}\nD: {}\nF: {}\n",
+           << fmt::format("A: {}\nB: {}\nC: {}\nD: {}\nF: {}\n",
                  aCount, bCount, cCount, dCount, fCount); 
    } 
    else { // no grades were entered, so output appropriate message

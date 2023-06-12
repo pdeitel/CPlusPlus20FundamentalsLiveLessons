@@ -1,102 +1,167 @@
-// cipher.h
-// Deitel implementation of the Vigenère cipher. 
+// Fig. 9.37: cipher.h
+// Vigenère cipher implementation. 
+#pragma once
 #include <algorithm>
 #include <array>
 #include <iostream>
-//#include <iterator>
-//#include <sstream>
 #include <string>
+#include <string_view>
 #include <cctype>
 #include <stdexcept>
-#include "gsl/gsl"
 
 class Cipher {
 public:
+   // constructor to initialize the Vigenère square 
    Cipher() {
-      std::array<char, size> alphabet{};
+      // array to store the 26 characters A-Z that will be 
+      // used to initialize each row of the Vigenère square
+      std::array<char, m_size> alphabet{};
 
-      for (int i{0}; i < size; ++i) {
-         alphabet.at(i) = 'a' + i;
+      // fill alphabet with A-Z
+      for (size_t i{0}; i < m_size; ++i) {
+         // convert 'A' + i to a char and place in alphabet
+         alphabet.at(i) = static_cast<char>('A' + i);
       }
 
-      square.at(0) = alphabet;
+      // copy alphabet into row 0 of the Vigenère square
+      m_square.at(0) = alphabet;
 
-      for (int row{1}; row < size; ++row) {
-         std::rotate(alphabet.begin(), alphabet.begin() + 1, alphabet.end());
-         square.at(row) = alphabet;
+      // for each remaining row of the Vigenère square, move alphabet's
+      // first letter to the end then copy alphabet into the row
+      for (int row{1}; row < m_size; ++row) {
+         // rotate alphabet, moving its first letter to the end
+         std::ranges::rotate(alphabet, std::begin(alphabet) + 1);
+
+         // copy alphabet into current row of the Vigenère square
+         m_square.at(row) = alphabet;
       }
-
-      //for (auto& row : square) {
-      //   for (auto& col : row) {
-      //      std::cout << col << ' ';
-      //   }
-      //   std::cout << std::endl;
-      //}
    }
 
-   std::string encrypt(const std::string& plainText, 
-      const std::string& secret) {
-      checkKey(secret); // ensure only letters in secret
+   // encrypt receives the plaintext and secret key, applies 
+   // the Vigenère cipher returns the encrypted ciphertext
+   std::string encrypt(
+      std::string_view plaintext, std::string_view secret) {
 
-      std::string cipherText{};
-      int keyCounter{0};
+      checkKey(secret); // ensure secret key contains only letters
 
-      for (size_t i{0}; i < plainText.length(); ++i) {
-         const bool upper = std::isupper(plainText.at(i));
-         const char current = std::tolower(plainText.at(i));
-         if ('a' <= current && current <= 'z') {
-            const int row{tolower(secret.at(keyCounter)) - 'a'};
-            keyCounter = (keyCounter + 1) % secret.length();
-            //const int row{tolower(key.at(i)) - 'a'};
-            const int col{current - 'a'};
-            const char substitute{square.at(row).at(col)};
-            cipherText += (upper ? std::toupper(substitute) : substitute);
+      std::string ciphertext{}; // stores encrypted text
+      size_t keyIndex{0}; // current letter index in secret key
+
+      // iterate through each character in plaintext
+      for (size_t i{0}; i < plaintext.length(); ++i) {
+         // determine whether character at i is lowercase so we can 
+         // place a corresponding lowercase letter in the ciphertext
+         const bool lower{std::islower(plaintext.at(i)) ? true : false};
+
+         // convert currentChar to uppercase; for uppercase 
+         // letters and non-letters the character remains the same
+         const char currentChar{static_cast<const char>(
+            std::toupper(plaintext.at(i)))};
+
+         // if the current character is a letter, encrypt it  
+         // and add it to cipherText in its original case
+         if ('A' <= currentChar && currentChar <= 'Z') {
+            // to get the row index in the Vigenère square, select the 
+            // character at keyIndex in the secret key, convert it to 
+            // uppercase and subtract 'A' from it
+            const int row{std::toupper(secret.at(keyIndex)) - 'A'};
+
+            // increment the keyIndex, ensuring that it is  
+            // reset to 0 if keyIndex reaches secret.length()
+            keyIndex = (keyIndex + 1) % secret.length();
+
+            // to get the column index in the Vigenère square,  
+            // subtract 'A' from the currentChar
+            const int column{currentChar - 'A'};
+
+            // select the substitute character from the Vigenère square
+            const char substituteChar{m_square.at(row).at(column)};
+
+            // add substituteChar to the ciphertext, ensuring that
+            // it's lowercase if the plaintext character was lowerase
+            ciphertext +=
+               (lower ? std::tolower(substituteChar) : substituteChar);
          }
          else {
-            cipherText += plainText.at(i); // pass through numbers and punctuation
+            ciphertext += currentChar; // add non-letter to ciphertext
          }
       }
-      return cipherText;
+
+      return ciphertext; // return the encrypted text
    }
 
-   std::string decrypt(const std::string& text,
-      const std::string& secret) {
-      checkKey(secret); // ensure only letters in secret
+   // decrypt receives the ciphertext and secret key, reverses
+   // Vigenère cipher process and returns the unencrypted plaintext
+   std::string decrypt(
+      std::string_view ciphertext, std::string_view secret) {
 
-      std::string plainText;
-      int keyCounter{0};
+      checkKey(secret); // ensure secret key contains only letters
 
-      for (size_t i{0}; i < text.length(); ++i) {
-         const bool upper = std::isupper(text.at(i));
-         const char current = std::tolower(text.at(i));
+      std::string plaintext{}; // stores unencrypted text
+      size_t keyIndex{0}; // current letter index in secret key
 
-         if ('a' <= current && current <= 'z') {
-            const int row{std::tolower(secret.at(keyCounter)) - 'a'};
-            keyCounter = (keyCounter + 1) % secret.length();
+      for (size_t i{0}; i < ciphertext.length(); ++i) {
+         // determine whether character at i is lowercase so we can 
+         // place a corresponding lowercase letter in plainText
+         const bool lower{std::islower(ciphertext.at(i)) ? true : false};
+
+         // convert currentChar to uppercase; for uppercase 
+         // letters and non-letters the character remains the same
+         const char currentChar{static_cast<const char>(
+            std::toupper(ciphertext.at(i)))};
+
+         // if current is a letter decrypt it
+         if ('A' <= currentChar && currentChar <= 'Z') {
+            // to get the row index in the Vigenère square, select the 
+            // character at keyIndex in the secret key, convert it to 
+            // uppercase and subtract 'A' from it
+            const int row{std::toupper(secret.at(keyIndex)) - 'A'};
+
+            // increment the keyIndex, ensuring that it is  
+            // reset to 0 if keyIndex reaches secret.length()
+            keyIndex = (keyIndex + 1) % secret.length();
+
+            // column in the Vigenère square
             int column{-1};
-            for (size_t col{0}; col < square.at(row).size(); ++col) {
-               if (square.at(row).at(col) == current) {
-                  column = col;
+
+            // find currentChar's column in Vigenère square's current row
+            for (int i{0}; i < m_square.at(row).size(); ++i) {
+               if (m_square.at(row).at(i) == currentChar) {
+                  column = i;
                   break;
                }
             }
-            const char original{gsl::narrow_cast<char>('a' + column)};
-            plainText += (upper ? std::toupper(original) : original);
+
+            // determine original character  
+            const char originalChar{
+               static_cast<const char>('A' + column)};
+
+            // add originalChar to plaintext in the correct case
+            plaintext +=
+               (lower ? std::tolower(originalChar) : originalChar);
          }
          else {
-            plainText += current; // pass through numbers and punctuation
+            plaintext += currentChar; // add non-letter to plaintext
          }
       }
-      return plainText;
+
+      return plaintext; // return the unencrypted text
    }
 private:
-   constexpr static int size{26};
-   std::array<std::array<char, 26>, 26> square;
+   // number of rows and columns in the Vigenère square
+   static constexpr size_t m_size{26};
 
-   // checks that secret key contains only letters
-   void checkKey(const std::string& secret) {
-      for (const char letter : secret) {
-         if (tolower(letter) < 'a' || tolower(letter) > 'z') {
+   // 26-by-26 array of characters to store the Vigenère square
+   std::array<std::array<char, m_size>, m_size> m_square;
+
+   // utility function checks that secret key contains only letters; 
+   // throws an invalid_argument exception if key contains non-letters
+   static void checkKey(std::string_view secret) {
+      for (size_t i{0}; i < secret.size(); ++i) {
+         // if the uppercase version of the character at index i 
+         // is not a letter throw an invalid_argument exception
+         if (std::toupper(secret.at(i)) < 'A' ||
+            std::toupper(secret.at(i)) > 'Z') {
             throw std::invalid_argument(
                "key must contain only letters A-Z or a-z");
          }
@@ -105,7 +170,7 @@ private:
 };
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

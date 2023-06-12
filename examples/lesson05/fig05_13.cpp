@@ -1,31 +1,41 @@
 // fig05_13.cpp
-// Name mangling to enable type-safe linkage.
+// Function template maximum test program.
+#include <iostream>
+#include "maximum.h" // include definition of function template maximum 
+using namespace std;
 
-// function square for int values
-int square(int x) {
-   return x * x;
-}
+int main() {
+   // demonstrate maximum with int values
+   cout << "Input three integer values: ";
+   int int1, int2, int3;
+   cin >> int1 >> int2 >> int3;
 
-// function square for double values
-double square(double y) {
-   return y * y;
-}
+   // invoke int version of maximum
+   cout << "The maximum integer value is: "
+      << maximum(int1, int2, int3);        
 
-// function that receives arguments of types 
-// int, float, char and int &
-void nothing1(int a, float b, char c, int& d) { }
+   // demonstrate maximum with double values
+   cout << "\n\nInput three double values: ";
+   double double1, double2, double3;
+   cin >> double1 >> double2 >> double3;
 
-// function that receives arguments of types 
-// char, int, float & and double &
-int nothing2(char a, int b, float& c, double& d) {
-   return 0;
-}
+   // invoke double version of maximum
+   cout << "The maximum double value is: "
+      << maximum(double1, double2, double3);
 
-int main() { }
+   // demonstrate maximum with char values
+   cout << "\n\nInput three characters: ";
+   char char1, char2, char3;
+   cin >> char1 >> char2 >> char3;
+
+   // invoke char version of maximum
+   cout << "The maximum character value is: "
+      << maximum(char1, char2, char3) << '\n';
+} 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

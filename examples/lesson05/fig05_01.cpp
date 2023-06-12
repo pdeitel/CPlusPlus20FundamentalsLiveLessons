@@ -1,7 +1,7 @@
 // fig05_01.cpp
 // maximum function with a function prototype.
 #include <iostream>
-#include <iomanip>
+
 using namespace std;
 
 int maximum(int x, int y, int z); // function prototype 
@@ -12,8 +12,8 @@ int main() {
    cin >> int1 >> int2 >> int3;
 
    // invoke maximum 
-   cout << "The maximum integer value is: "
-      << maximum(int1, int2, int3) << endl;
+   cout << "The maximum integer value is: " 
+      << maximum(int1, int2, int3) << '\n';
 }
 
 // returns the largest of three integers   
@@ -33,8 +33,9 @@ int maximum(int x, int y, int z) {
    return maximumValue;
 }
 
+
 /*************************************************************************
-* (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+* (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
 * Pearson Education, Inc. All Rights Reserved.                           *
 *                                                                        *
 * DISCLAIMER: The authors and publisher of this book have used their     *

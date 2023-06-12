@@ -1,5 +1,6 @@
 // fig04_03.cpp
-// Summing integers with the for statement.
+// Summing integers with the for statement; introducing text formatting.
+#include <format> 
 #include <iostream>
 using namespace std;
 
@@ -8,15 +9,17 @@ int main() {
 
    // total even integers from 2 through 20
    for (int number{2}; number <= 20; number += 2) {
-      total += number;
+      total += number;                             
    }
 
-   cout << "Sum is " << total << endl;
+   cout << format("Sum is {}\n", total);
 } 
 
 
+
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2023 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

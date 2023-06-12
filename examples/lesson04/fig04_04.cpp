@@ -1,36 +1,34 @@
 // fig04_04.cpp
 // Compound-interest calculations with for.
+#include <format> 
 #include <iostream>
-#include <iomanip>
 #include <cmath> // for pow function
 using namespace std;
 
 int main() {
-   // set floating-point number format
-   cout << fixed << setprecision(2);
-
    double principal{1000.00}; // initial amount before interest
    double rate{0.05}; // interest rate
 
-   cout << "Initial principal: " << principal << endl;
-   cout << "    Interest rate:    " << rate << endl;
+   cout << format("Initial principal: {:>7.2f}\n", principal)
+        << format("    Interest rate: {:>7.2f}\n", rate);
 
    // display headers
-   cout << "\nYear" << setw(20) << "Amount on deposit" << endl;
+   cout << format("\n{}{:>20}\n", "Year",  "Amount on deposit");
 
-   // calculate amount on deposit for each of ten years
-   for (int year{1}; year <= 10; ++year) {
+   // calculate amount on deposit for each of ten years              
+   for (int year{1}; year <= 10; ++year) {                           
       // calculate amount on deposit at the end of the specified year
-      double amount = principal * pow(1.0 + rate, year);
-
-      // display the year and the amount
-      cout << setw(4) << year << setw(20) << amount << endl;
-   } 
+      double amount{principal * pow(1.0 + rate, year)} ;             
+                                                                     
+      // display the year and the amount                             
+      cout << format("{:>4d}{:>20.2f}\n", year, amount);
+   }                                                                 
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2023 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *
