@@ -1,20 +1,22 @@
-// Fig. 10.41: Base1.h
-// Definition of class Base1
+// Fig. 10.24: Commission.h
+// Commission implements the CompensationModel interface.
 #pragma once
+#include <string> 
+#include "CompensationModel.h" // CompensationModel definition
 
-// class Base1 definition
-class Base1 {
+class Commission final : public CompensationModel {
 public:
-   explicit Base1(int value) : m_value{value} {}
-   int getData() const {return m_value;}
-private: // accessible to derived classes via getData member function
-   int m_value; 
-}; 
-
+   Commission(double grossSales, double commissionRate);
+   double earnings() const override;
+   std::string toString() const override;
+private:
+   double m_grossSales{0.0};
+   double m_commissionRate{0.0};
+};
 
 
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

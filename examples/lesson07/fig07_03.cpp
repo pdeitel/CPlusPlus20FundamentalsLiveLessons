@@ -1,17 +1,17 @@
 // fig07_03.cpp
 // Pass-by-reference with a pointer argument used to cube a 
 // variable's value.
+#include <format>
 #include <iostream>
-using namespace std;
 
 void cubeByReference(int* nPtr); // prototype 
 
 int main() {
    int number{5};
 
-   cout << "The original value of number is " << number;
+   std::cout << std::format("Original value of number is {}\n", number);
    cubeByReference(&number); // pass number address to cubeByReference
-   cout << "\nThe new value of number is " << number << endl;
+   std::cout << std::format("New value of number is {}\n", number);
 }
 
 // calculate cube of *nPtr; modifies variable number in main 
@@ -20,7 +20,7 @@ void cubeByReference(int* nPtr) {
 }
 
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

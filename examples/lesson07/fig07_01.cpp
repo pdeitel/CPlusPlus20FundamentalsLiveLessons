@@ -7,15 +7,15 @@ int main() {
    constexpr int a{7}; // initialize a with 7
    const int* aPtr{&a}; // initialize aPtr with address of int variable a
 
-   cout << "The address of a is " << &a
+   std::cout << "The address of a is " << &a
       << "\nThe value of aPtr is " << aPtr;
-   cout << "\n\nThe value of a is " << a
-      << "\nThe value of *aPtr is " << *aPtr << endl;
+   std::cout << "\n\nThe value of a is " << a
+      << "\nThe value of *aPtr is " << *aPtr << '\n';
 }
 
 
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

@@ -9,7 +9,7 @@ public:
    explicit Employee(std::string_view name);
    virtual ~Employee() = default; // compiler generates virtual destructor
 
-   void setName(std::string_view name); 
+   void setName(std::string_view name);
    std::string getName() const;
 
    // pure virtual function makes Employee an abstract base class
@@ -17,10 +17,11 @@ public:
    virtual std::string toString() const; // virtual
 private:
    std::string m_name;
-}; 
+};
+
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

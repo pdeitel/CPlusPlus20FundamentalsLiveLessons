@@ -1,20 +1,18 @@
 // fig06_11.cpp
 // Compute the sum of the elements of an array using accumulate.
 #include <array>
+#include <format>
 #include <iostream>
 #include <numeric>
-using namespace std;
 
 int main() {
-   constexpr size_t arraySize{4}; 
-   array<int, arraySize> integers{10, 20, 30, 40};
-   cout << "Total of array elements: " << 
-      accumulate(begin(integers), end(integers), 0) << endl;
+   constexpr std::array integers{10, 20, 30, 40};
+   std::cout << std::format("Total of array elements: {}\n",
+      std::accumulate(std::begin(integers), std::end(integers), 0));
 }
 
-
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

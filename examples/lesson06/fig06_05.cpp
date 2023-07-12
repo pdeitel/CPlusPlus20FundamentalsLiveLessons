@@ -1,25 +1,25 @@
 // fig06_05.cpp
-// Compute the sum of the elements of an array.
+// Compute the sum of an array's elements.
+#include <format>
 #include <iostream>
 #include <array>
-using namespace std;
 
 int main() {
-   constexpr size_t arraySize{4}; 
-   array<int, arraySize> integers{10, 20, 30, 40};
+   std::array items{10, 20, 30, 40}; // type inferred as array<int, 4>
    int total{0};
 
-   // sum contents of array integers             
-   for (const int item : integers) {
+   // sum the contents of items            
+   for (const int& item : items) {
       total += item;
    }
 
-   cout << "Total of array elements: " << total << endl;
+   std::cout << std::format("Total of array elements: {}\n", total);
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

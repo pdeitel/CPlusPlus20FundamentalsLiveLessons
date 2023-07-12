@@ -1,42 +1,40 @@
 // fig06_06.cpp
 // Printing a student grade distribution as a primitive bar chart.
+#include <format>
 #include <iostream>
 #include <array>
-using namespace std;
 
 int main() {
-   constexpr size_t arraySize{11};
-   array<int, arraySize> frequencies{0, 0, 0, 0, 0, 0, 1, 2, 4, 2, 1};
+   constexpr std::array frequencies{0, 0, 0, 0, 0, 0, 1, 2, 4, 2, 1};
 
-   cout << "Grade distribution:" << endl;
+   std::cout << "Grade distribution:\n";
 
    // for each element of frequencies, output a bar of the chart
-   for (int i{0}; const int frequency : frequencies) {
-      // output bar labels ("0-9:", ..., "90-99:", "100:")
-      if (0 == i) {
-         cout << "  0-9: ";
-      }
-      else if (10 == i) {
-         cout << "  100: ";
+   for (int i{0}; const int& frequency : frequencies) {
+      // output bar labels ("00-09:", ..., "90-99:", "100:")
+      if (i < 10) {
+         std::cout << std::format("{:02d}-{:02d}: ",
+            i * 10, (i * 10) + 9);
       }
       else {
-         cout << i * 10 << "-" << (i * 10) + 9 << ": ";
+         std::cout << std::format("{:>5d}: ", 100);
       }
 
       ++i;
 
       // print bar of asterisks
       for (int stars{0}; stars < frequency; ++stars) {
-         cout << '*';
+         std::cout << '*';
       }
 
-      cout << endl; // start a new line of output
+      std::cout << '\n'; // start a new line of output
    }
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

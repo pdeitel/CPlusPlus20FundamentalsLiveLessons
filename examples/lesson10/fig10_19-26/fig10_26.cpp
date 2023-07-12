@@ -1,29 +1,36 @@
-// Fig. 10.21: SalariedEmployee.h
-// SalariedEmployee class derived from Employee.
-#pragma once
-#include <string> // C++ standard string class
-#include <string_view> 
-#include "Employee.h" // Employee class definition
+// fig10_26.cpp
+// Processing Employees with various CompensationModels.
+#include <format>
+#include <iostream>
+#include <vector>
+#include "Employee.h"
+#include "Salaried.h" 
+#include "Commission.h"  
 
-class SalariedEmployee final : public Employee {
-public:
-   SalariedEmployee(std::string_view name, double salary);
-   virtual ~SalariedEmployee() = default; // virtual destructor
+int main() {
+   // create CompensationModels and Employees
+   Salaried salaried{800.0};
+   Employee salariedEmployee{"Pierre Simon", &salaried};
 
-   void setSalary(double salary); 
-   double getSalary() const; 
-private:
-   double m_salary{0.0}; 
+   Commission commission{10000, .06};
+   Employee commissionEmployee{"Sierra Dembo", &commission};
 
-   // keyword override signals intent to override               
-   double getPay() const override; // calculate earnings        
-   std::string getString() const override; // string representation
-}; 
+   // create and initialize vector of Employees
+   std::vector employees{salariedEmployee, commissionEmployee};
+
+   // print each Employee's information and earnings 
+   for (const Employee& employee : employees) {
+      std::cout << std::format("{}\nearned: ${:.2f}\n\n",
+         employee.toString(), employee.earnings());
+   }
+}
+
+
 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

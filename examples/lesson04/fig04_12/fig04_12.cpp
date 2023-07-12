@@ -1,32 +1,34 @@
-// fig10_40.cpp
-// Processing Employees with various compensation models.
+// fig04_12.cpp
+// Compound-interest example with C++20 text formatting.
 #include <iostream>
-#include <vector>
-#include <fmt/format.h> // In C++20, this will be #include <format> 
-#include "Employee.h"
-#include "Salaried.h" 
-#include "Commission.h"  
+#include <cmath> // for pow function
+#include "fmt/format.h" // in C++20, this will be #include <format>
 using namespace std;
+using namespace fmt; // not needed in C++20
 
 int main() {
-   Employee salariedEmployee{"John Smith", Salaried{800.0}};
-   Employee commissionEmployee{"Sue Jones", Commission{10000.0, .06}};
+   double principal{1000.00}; // initial amount before interest
+   double rate{0.05}; // interest rate
 
-   // create and initialize vector Employees
-   vector employees{salariedEmployee, commissionEmployee};                                    
+   cout << format("Initial principal: {:>7.2f}\n", principal)
+        << format("    Interest rate: {:>7.2f}\n", rate);
 
-   // print each Employee's information and earnings 
-   for (const Employee& employee : employees) {
-      cout << fmt::format("{}\nearned: ${:.2f}\n\n", 
-                 employee.toString(), employee.earnings());
-   }                                                                                                    
-} 
+   // display headers
+   cout << format("\n{}{:>20}\n", "Year", "Amount on deposit");
 
+   // calculate amount on deposit for each of ten years
+   for (int year{1}; year <= 10; ++year) {
+      // calculate amount on deposit at the end of the specified year
+      double amount = principal * pow(1.0 + rate, year);
 
+      // display the year and the amount
+      cout << format("{:>4d}{:>20.2f}\n", year, amount);
+   }
+}
 
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

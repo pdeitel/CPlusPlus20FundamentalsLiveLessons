@@ -1,28 +1,38 @@
-// Fig. 10.43: Derived.h
-// Definition of class Derived which inherits
-// multiple base classes (Base1 and Base2).
-#pragma once
-
+// fig15_20.cpp
+// Encrypting and decrypting text with a Vigenère cipher. 
+#include "cipher.h"
 #include <iostream>
 #include <string>
-#include "Base1.h"
-#include "Base2.h"
 using namespace std;
 
-// class Derived definition
-class Derived : public Base1, public Base2 {
-public:
-   Derived(int value, char letter, double real);
-   double getReal() const;
-   std::string toString() const;
-private:
-   double m_real; // derived class's private data
-}; 
+int main() {
+   string plainText;
+   cout << "Enter the text to encrypt:\n";
+   getline(cin, plainText);
 
+   string secretKey;
+   cout << "\nEnter the secret key:\n";
+   getline(cin, secretKey);
 
+   Cipher cipher; 
+
+   // encrypt plainText using secretKey
+   string cipherText{cipher.encrypt(plainText, secretKey)};
+   cout << "\nEncrypted:\n   " << cipherText << endl;
+
+   // decrypt cipherText
+   cout << "\nDecrypted:\n   "  
+      << cipher.decrypt(cipherText, secretKey) << endl;
+   
+   // decrypt ciphertext entered by the user
+   cout << "\nEnter the ciphertext to decipher:\n";
+   getline(cin, cipherText);
+   cout << "\nDecrypted:\n   " 
+      << cipher.decrypt(cipherText, secretKey) << endl;
+}
 
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

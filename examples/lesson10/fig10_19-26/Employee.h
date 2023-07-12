@@ -1,22 +1,24 @@
-// Fig. 10.29: Salaried.h
-// Salaried implements the CompensationModel interface.
-#pragma once
+// Fig. 10.20: Employee.h
+// An Employee "has a" CompensationModel.
+#pragma once // prevent multiple inclusions of header
 #include <string> 
-#include "CompensationModel.h" // CompensationModel definition
+#include <string_view> 
+#include "CompensationModel.h"
 
-class Salaried final : public CompensationModel {
+class Employee final {
 public:
-   explicit Salaried(double salary);
-   double earnings() const override;      
-   std::string toString() const override; 
+   Employee(std::string_view name, CompensationModel* modelPtr);
+   void setCompensationModel(CompensationModel* modelPtr);
+   double earnings() const;
+   std::string toString() const;
 private:
-   double m_salary{0.0}; 
-}; 
-
+   std::string m_name{};
+   CompensationModel* m_modelPtr{}; // pointer to an implementation object
+};
 
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

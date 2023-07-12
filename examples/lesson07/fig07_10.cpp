@@ -1,18 +1,19 @@
 // fig07_10.cpp
 // Sizeof operator when used on a built-in array's name
 // returns the number of bytes in the built-in array.
+#include <format>
 #include <iostream>
-using namespace std;
 
 size_t getSize(double* ptr); // prototype
 
 int main() {
    double numbers[20]; // 20 doubles; occupies 160 bytes on our system
 
-   cout << "The number of bytes in the array is " << sizeof(numbers);
+   std::cout << std::format("Number of bytes in numbers is {}\n",
+      sizeof(numbers));
 
-   cout << "\nThe number of bytes returned by getSize is "
-      << getSize(numbers) << endl;
+   std::cout << std::format("Number of bytes returned by getSize is {}\n",
+      getSize(numbers));
 }
 
 // return size of ptr         
@@ -21,8 +22,9 @@ size_t getSize(double* ptr) {
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

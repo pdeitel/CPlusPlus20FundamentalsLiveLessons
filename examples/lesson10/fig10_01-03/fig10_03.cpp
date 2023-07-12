@@ -1,29 +1,29 @@
 // fig10_03.cpp
 // SalariedEmployee class test program.
+#include <format>
 #include <iostream>
-#include <fmt/format.h> // In C++20, this will be #include <format> 
 #include "SalariedEmployee.h" // SalariedEmployee class definition
-using namespace std;
 
 int main() {
    // instantiate a SalariedEmployee object     
-   SalariedEmployee employee{"Sue Jones", 300.0};
-   
+   SalariedEmployee employee{"Sierra Dembo", 300.0};
+
    // get SalariedEmployee data
-   cout << "Employee information obtained by get functions:\n"
-        << fmt::format("name: {}\nsalary: ${:.2f}\n", employee.getName(),
-              employee.getSalary());
+   std::cout << "Employee information obtained by get functions:\n"
+      << std::format("name: {}\nsalary: ${:.2f}\n", employee.getName(),
+            employee.getSalary());
 
    employee.setSalary(500.0); // change salary      
-   cout << "\nUpdated employee information from function toString:\n" 
+   std::cout << "\nUpdated employee information from function toString:\n"
       << employee.toString();
 
    // display only the employee's earnings
-   cout << fmt::format("\nearnings: ${:.2f}\n", employee.earnings());
-} 
+   std::cout << std::format("\nearnings: ${:.2f}\n", employee.earnings());
+}
+
 
 /**************************************************************************
- * (C) Copyright 1992-2017 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

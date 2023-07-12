@@ -1,29 +1,22 @@
-// Fig. 10.35: Salaried.cpp
-// Salaried compensation model member-function definitions.
-#include <stdexcept>
-#include <fmt/format.h> // In C++20, this will be #include <format> 
-#include "Salaried.h" // class definition
-using namespace std;
+// Fig. 10.22: Salaried.h
+// Salaried implements the CompensationModel interface.
+#pragma once
+#include <string> 
+#include "CompensationModel.h" // CompensationModel definition
 
-// constructor 
-Salaried::Salaried(double salary) : m_salary{salary} {
-   if (m_salary < 0.0) {
-      throw invalid_argument("Weekly salary must be >= 0.0");
-   } 
-} 
-
-// calculate earnings
-double Salaried::earnings() const {return m_salary;}
-
-// return string containing Salaried compensation model information
-string Salaried::toString() const {
-   return fmt::format("salary: ${:.2f}", m_salary);
-} 
+class Salaried final : public CompensationModel {
+public:
+   explicit Salaried(double salary);
+   double earnings() const override;
+   std::string toString() const override;
+private:
+   double m_salary{0.0};
+};
 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

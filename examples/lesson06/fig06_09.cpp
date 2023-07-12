@@ -1,44 +1,48 @@
 // fig06_09.cpp
 // Sorting and searching arrays.
-#include <iostream>
 #include <array>
-#include <string>
 #include <algorithm> // contains sort and binary_search
-using namespace std;
+#include <format>
+#include <iostream>
+#include <string>
 
 int main() {
-   constexpr size_t arraySize{7}; // size of array colors
-   array<string, arraySize> colors{"red", "orange", "yellow",
-      "green", "blue", "indigo", "violet"};
+   using namespace std::string_literals; // enables string object literals
+
+   // colors is inferred to be an array<string, 7>
+   std::array colors{"red"s, "orange"s, "yellow"s,
+      "green"s, "blue"s, "indigo"s, "violet"s};
 
    // output original array
-   cout << "Unsorted colors array:\n";
-   for (string color : colors) {
-      cout << color << " ";
+   std::cout << "Unsorted colors array:\n   ";
+   for (const std::string& color : colors) {
+      std::cout << std::format("{} ", color);
    }
 
-   sort(begin(colors), end(colors)); // sort contents of colors
+   // sort contents of colors
+   std::sort(std::begin(colors), std::end(colors));
 
    // output sorted array
-   cout << "\nSorted colors array:\n";
-   for (string item : colors) {
-      cout << item << " ";
+   std::cout << "\nSorted colors array:\n   ";
+   for (const std::string& color : colors) {
+      std::cout << std::format("{} ", color);
    }
 
    // search for "indigo" in colors
-   bool found{binary_search(begin(colors), end(colors), "indigo")};
-   cout << "\n\n\"indigo\" " << (found ? "was" : "was not")
-      << " found in colors array" << endl;
+   bool found{std::binary_search(
+      std::begin(colors), std::end(colors), "indigo")};
+   std::cout << std::format("\n\n\"indigo\" {} found in colors array\n",
+      found ? "was" : "was not");
 
    // search for "cyan" in colors
-   found = binary_search(begin(colors), end(colors), "cyan");
-   cout << "\"cyan\" " << (found ? "was" : "was not")
-      << " found in colors array" << endl;
+   found = std::binary_search(
+      std::begin(colors), std::end(colors), "cyan");
+   std::cout << std::format("\"cyan\" {} found in colors array\n",
+      found ? "was" : "was not");
 }
 
-
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

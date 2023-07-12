@@ -1,16 +1,16 @@
 // fig07_02.cpp
 // Pass-by-value used to cube a variable's value.
+#include <format>
 #include <iostream>
-using namespace std;
 
 int cubeByValue(int n); // prototype 
 
 int main() {
    int number{5};
 
-   cout << "The original value of number is " << number;
+   std::cout << std::format("Original value of number is {}\n", number);
    number = cubeByValue(number); // pass number by value to cubeByValue
-   cout << "\nThe new value of number is " << number << endl;
+   std::cout << std::format("New value of number is {}\n", number);
 }
 
 // calculate and return cube of integer argument                
@@ -19,8 +19,9 @@ int cubeByValue(int n) {
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

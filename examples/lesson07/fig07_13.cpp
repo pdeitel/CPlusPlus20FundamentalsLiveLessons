@@ -1,18 +1,20 @@
 // fig07_13.cpp
 // Reading in command-line arguments.
+#include <format>
 #include <iostream>
-using namespace std;
 
 int main(int argc, char* argv[]) {
-   cout << "There were " << argc << " command-line arguments:\n";
+   std::cout << std::format("Number of arguments: {}\n\n", argc);
+
    for (int i{0}; i < argc; ++i) {
-      cout << argv[i] << endl;
+      std::cout << std::format("{}\n", argv[i]);
    }
 }
 
 
+
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

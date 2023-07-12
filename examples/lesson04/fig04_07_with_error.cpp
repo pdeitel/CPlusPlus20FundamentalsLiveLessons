@@ -1,23 +1,29 @@
-// Fig. 10.44: Derived.cpp
-// Member-function definitions for class Derived
-#include <fmt/format.h> // In C++20, this will be #include <format> 
-#include "Derived.h"
+// fig04_07_with_error.cpp
+// C++17 if statements with initializers.
+#include <iostream>
+using namespace std;
 
-// constructor for Derived calls Base1 and Base2 constructors
-Derived::Derived(int value, char letter, double real)
-   : Base1{value}, Base2{letter}, m_real{real} {} 
+int main() {
+   if (int value{7}; value == 7) {
+      cout << "value is " << value << endl;
+   }
+   else {
+      cout << "value is not 7; it is " << value << endl;
+   }
 
-// return real
-double Derived::getReal() const {return m_real;}
+   if (int value{13}; value == 9) {
+      cout << "value is " << value << endl;
+   }
+   else {
+      cout << "value is not 9; it is " << value << endl;
+   }
 
-// display all data members of Derived
-string Derived::toString() const {
-   return fmt::format("int: {}; char: {}; double: {}", 
-             Base1::getData(), Base2::getData(), getReal());
-} 
+   cout << value;
+}
+
 
 /**************************************************************************
- * (C) Copyright 1992-2014 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

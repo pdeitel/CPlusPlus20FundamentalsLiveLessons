@@ -1,24 +1,34 @@
 // fig06_02.cpp
 // Initializing an array in a declaration.
+#include <format>
 #include <iostream>
 #include <array>
-using namespace std;
 
 int main() {
-   array<int, 5> n{32, 27, 64, 18, 95}; // list initializer
+   std::array<int, 5> values{32, 27, 64, 18, 95}; // braced initializer
 
    // output each array element's value
-   for (size_t i{0}; i < n.size(); ++i) {
-      cout << n.at(i) << "  ";
+   for (size_t i{0}; i < values.size(); ++i) {
+      std::cout << std::format("{}  ", values.at(i));
    }
 
-   cout << endl;
+   std::cout << "\n\n";
+
+   // using class template argument deduction to determine values2's type
+   std::array values2{1.1, 2.2, 3.3, 4.4};
+
+   // output each array element's value
+   for (size_t i{0}; i < values2.size(); ++i) {
+      std::cout << std::format("{}  ", values2.at(i));
+   }
+
+   std::cout << '\n';
 }
 
 
 
 /**************************************************************************
- * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

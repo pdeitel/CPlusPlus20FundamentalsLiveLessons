@@ -1,28 +1,32 @@
-// Fig. 10.19: Employee.h
-// Employee abstract base class.
-#pragma once // prevent multiple inclusions of header
-#include <string> 
-#include <string_view> 
+// fig09_36.cpp
+// Encrypting and decrypting text with a Vigenère cipher. 
+#include "cipher.h"
+#include <iostream>
+#include <string>
 
-class Employee {
-public:
-   Employee(std::string_view name);
-   virtual ~Employee() = default; 
+int main() {
+   std::string plainText;
+   std::cout << "Enter the text to encrypt:\n";
+   std::getline(std::cin, plainText);
 
-   void setName(std::string_view name); 
-   std::string getName() const; 
+   std::string secretKey;
+   std::cout << "\nEnter the secret key:\n";
+   std::getline(std::cin, secretKey);
 
-   double earnings() const; // not virtual 
-   std::string toString() const; // not virtual 
-protected:
-   virtual std::string getString() const; // virtual
-private:
-   std::string m_name;
-   virtual double getPay() const = 0; // pure virtual
-}; 
+   Cipher cipher;
+
+   // encrypt plainText using secretKey
+   std::string cipherText{cipher.encrypt(plainText, secretKey)};
+   std::cout << "\nEncrypted:\n   " << cipherText << '\n';
+
+   // decrypt cipherText
+   std::cout << "\nDecrypted:\n   " 
+      << cipher.decrypt(cipherText, secretKey) << '\n';
+}
+
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

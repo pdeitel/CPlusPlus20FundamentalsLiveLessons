@@ -1,33 +1,29 @@
-// Fig. 10.23: CommissionEmployee.h
-// CommissionEmployee class derived from Employee.
-#pragma once
-#include <string> 
-#include <string_view> 
-#include "Employee.h" // Employee class definition
+// fig05_12.cpp
+// Overloaded square functions.
+#include <iostream>
+using namespace std;
 
-class CommissionEmployee final : public Employee {
-public:
-   CommissionEmployee(std::string_view name, double grossSales, 
-      double commissionRate);
-   virtual ~CommissionEmployee() = default; // virtual destructor
+// function square for int values              
+int square(int x) {
+   cout << "square of integer " << x << " is ";
+   return x * x;
+}
 
-   void setGrossSales(double grossSales); 
-   double getGrossSales() const; 
+// function square for double values           
+double square(double y) {
+   cout << "square of double " << y << " is ";
+   return y * y;
+}
 
-   void setCommissionRate(double commissionRate); 
-   double getCommissionRate() const; 
-private:
-   double m_grossSales{0.0};      
-   double m_commissionRate{0.0};  
-
-   // keyword override signals intent to override                 
-   double getPay() const override; // calculate earnings        
-   std::string getString() const override; // string representation
-}; 
-
+int main() {
+   cout << square(7); // calls int version
+   cout << endl;
+   cout << square(7.5); // calls double version
+   cout << endl;
+}
 
 /**************************************************************************
- * (C) Copyright 1992-2021 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *

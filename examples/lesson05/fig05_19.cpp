@@ -1,40 +1,17 @@
-// fig07_06.cpp
-// C++20: Creating std::arrays with to_array.
-#include <format>
-#include <iostream>
-#include <array>
+// fig05_19.cpp
+// C++17 [[nodiscard]] attribute.
 
-int main() {
-   // generic lambda to display a collection of items
-   const auto display{
-      [](const auto& items) {
-         for (const auto& item : items) {
-            std::cout << std::format("{} ", item);
-         }
-      }
-   };
-
-   const int values1[]{10, 20, 30};
-
-   // creating a std::array from a built-in array
-   const auto array1{std::to_array(values1)};
-
-   std::cout << std::format("array1.size() = {}\n", array1.size())
-      << "array1: ";
-   display(array1); // use lambda to display contents
-
-   // creating a std::array from an initializer list
-   const auto array2{std::to_array({1, 2, 3, 4})};
-   std::cout << std::format("\n\narray2.size() = {}\n", array2.size())
-      << "array2: ";
-   display(array2); // use lambda to display contents
-
-   std::cout << '\n';
+[[nodiscard]]
+int cube(int x) {
+   return x * x * x;
 }
 
+int main() {
+   cube(10); // generates a compiler warning
+}
 
 /**************************************************************************
- * (C) Copyright 1992-2022 by Deitel & Associates, Inc. and               *
+ * (C) Copyright 1992-2020 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
  * DISCLAIMER: The authors and publisher of this book have used their     *
